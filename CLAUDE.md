@@ -21,10 +21,19 @@ A macOS menubar app that optimizes user prompts before sending to AI models usin
 5. **BYOK model**: Users provide their own API keys and endpoints
 
 ## Core Workflow
-1. User selects text → presses global hotkey (Cmd+Shift+P)
+
+### Replace Mode (Default: Cmd+Shift+P)
+1. User selects text → presses replace hotkey
 2. Save current clipboard → simulate Cmd+C to capture selected text
 3. Wrap user text with meta-prompt → call OpenAI API
 4. On success: paste optimized prompt back (simulate Cmd+V)
+5. On failure: show notification, keep original text, restore clipboard
+
+### Display Mode (Default: Cmd+Shift+I)
+1. User selects text → presses display hotkey
+2. Save current clipboard → simulate Cmd+C to capture selected text
+3. Wrap user text with meta-prompt → call OpenAI API
+4. On success: show floating window with original text and AI summary
 5. On failure: show notification, keep original text, restore clipboard
 
 ## Performance Targets
@@ -46,13 +55,15 @@ PromptSpark/
 ```
 
 ## Key Features (MVP)
-- [x] Global hotkey support
+- [x] Global hotkey support (dual-mode)
+  - Replace Mode: Optimize and replace selected text
+  - Display Mode: Summarize and show in floating window
 - [x] Text capture & replacement
 - [x] OpenAI-compatible API client
 - [x] Meta-prompt template engine
 - [x] Custom prompt editor (in-app UI)
 - [x] Profile (scenario) management
-- [x] Multiple profiles with different hotkeys
+- [x] Result display window for read-only content
 - [x] MenuBar icon & menu
 
 ## Development Notes

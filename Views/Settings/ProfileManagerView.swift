@@ -128,7 +128,6 @@ struct ProfileEditorView: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
 
-                // TextEditor with custom scroll
                 TextEditor(text: $profile.metaPrompt)
                     .font(.system(.body, design: .monospaced))
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

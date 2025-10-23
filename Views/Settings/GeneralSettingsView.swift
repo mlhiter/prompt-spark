@@ -1,4 +1,5 @@
 import SwiftUI
+import KeyboardShortcuts
 
 struct GeneralSettingsView: View {
     @StateObject private var appState = AppState.shared
@@ -14,6 +15,41 @@ struct GeneralSettingsView: View {
                     .foregroundColor(.secondary)
             } header: {
                 Text("Appearance")
+            }
+
+            Section {
+                VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Image(systemName: "arrow.triangle.swap")
+                                .foregroundColor(.accentColor)
+                            Text("Replace Mode")
+                                .fontWeight(.medium)
+                        }
+                        Text("Optimize and replace selected text")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        KeyboardShortcuts.Recorder("", name: .replaceMode)
+                    }
+
+                    Divider()
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Image(systemName: "doc.text.magnifyingglass")
+                                .foregroundColor(.accentColor)
+                            Text("Display Mode")
+                                .fontWeight(.medium)
+                        }
+                        Text("Summarize and display in window")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        KeyboardShortcuts.Recorder("", name: .displayMode)
+                    }
+                }
+                .padding(.vertical, 4)
+            } header: {
+                Text("Global Hotkeys")
             }
 
             Section {

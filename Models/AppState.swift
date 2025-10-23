@@ -19,16 +19,10 @@ class AppState: ObservableObject {
     }
 
     func loadConfiguration() {
-        // Load API config
         self.apiConfig = configService.loadAPIConfig()
-
-        // Load profiles
         self.profiles = configService.loadProfiles()
-
-        // Load show in dock setting
         self.showInDock = configService.loadShowInDock()
 
-        // Set active profile
         if let activeIDString = configService.activeProfileID,
            let activeID = UUID(uuidString: activeIDString),
            let active = profiles.first(where: { $0.id == activeID }) {

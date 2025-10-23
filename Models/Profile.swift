@@ -4,7 +4,6 @@ struct Profile: Codable, Identifiable, Equatable, Hashable {
     let id: UUID
     var name: String
     var metaPrompt: String
-    var hotkeyName: String?
     var isActive: Bool
     var createdAt: Date
     var updatedAt: Date
@@ -13,13 +12,11 @@ struct Profile: Codable, Identifiable, Equatable, Hashable {
         id: UUID = UUID(),
         name: String,
         metaPrompt: String,
-        hotkeyName: String? = nil,
         isActive: Bool = false
     ) {
         self.id = id
         self.name = name
         self.metaPrompt = metaPrompt
-        self.hotkeyName = hotkeyName
         self.isActive = isActive
         self.createdAt = Date()
         self.updatedAt = Date()

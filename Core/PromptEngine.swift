@@ -4,6 +4,7 @@ class PromptEngine {
     static let shared = PromptEngine()
 
     private let apiClient: APIClientProtocol
+    private let configService = ConfigService.shared
 
     private init() {
         self.apiClient = OpenAIClient.shared
@@ -33,6 +34,23 @@ class PromptEngine {
         }
 
         return try await apiClient.optimizePrompt(text, config: config, metaPrompt: metaPrompt)
+    }
+
+    func summarizeText(_ text: String) async throws -> String {
+        let config = await appState.apiConfig
+        let summaryPrompt = configService.loadDefaultSummaryPrompt()
+
+        await MainActor.run {
+            appState.isProcessing = true
+        }
+
+        defer {
+            Task { @MainActor in
+                appState.isProcessing = false
+            }
+        }
+
+        return try await apiClient.optimizePrompt(text, config: config, metaPrompt: summaryPrompt)
     }
 
     func validateConfiguration() async throws {

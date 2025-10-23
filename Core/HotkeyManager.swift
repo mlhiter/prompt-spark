@@ -2,7 +2,13 @@ import Foundation
 import KeyboardShortcuts
 
 extension KeyboardShortcuts.Name {
-    static let optimizePrompt = Self("optimizePrompt")
+    static let replaceMode = Self("replaceMode")
+    static let displayMode = Self("displayMode")
+}
+
+enum HotkeyMode {
+    case replace
+    case display
 }
 
 class HotkeyManager {
@@ -12,6 +18,7 @@ class HotkeyManager {
     private let promptEngine = PromptEngine.shared
     private let notificationService = NotificationService.shared
     private let statusWindow = StatusWindowController()
+    private let resultWindow = ResultWindowController()
 
     private init() {
         print("🔑 Initializing HotkeyManager...")
@@ -20,40 +27,47 @@ class HotkeyManager {
     }
 
     private func setupHotkeys() {
-        // Set default shortcut if not already set
-        if KeyboardShortcuts.getShortcut(for: .optimizePrompt) == nil {
-            KeyboardShortcuts.setShortcut(.init(.p, modifiers: [.command, .shift]), for: .optimizePrompt)
-            print("🔑 Default shortcut set: Cmd+Shift+P")
-        } else {
-            let shortcut = KeyboardShortcuts.getShortcut(for: .optimizePrompt)
-            print("🔑 Shortcut already configured: \(String(describing: shortcut))")
+        if KeyboardShortcuts.getShortcut(for: .replaceMode) == nil {
+            KeyboardShortcuts.setShortcut(.init(.p, modifiers: [.command, .shift]), for: .replaceMode)
+            print("🔑 Default replace shortcut set: Cmd+Shift+P")
         }
 
-        KeyboardShortcuts.onKeyUp(for: .optimizePrompt) { [weak self] in
-            print("⌨️  HOTKEY TRIGGERED! Cmd+Shift+P pressed")
+        if KeyboardShortcuts.getShortcut(for: .displayMode) == nil {
+            KeyboardShortcuts.setShortcut(.init(.i, modifiers: [.command, .shift]), for: .displayMode)
+            print("🔑 Default display shortcut set: Cmd+Shift+I")
+        }
+
+        KeyboardShortcuts.onKeyUp(for: .replaceMode) { [weak self] in
+            print("⌨️  REPLACE MODE TRIGGERED!")
             guard let self = self else { return }
             Task { @MainActor in
-                await self.handleOptimizePrompt()
+                await self.handleHotkey(mode: .replace)
             }
         }
-        print("🔑 Hotkey listener registered")
+
+        KeyboardShortcuts.onKeyUp(for: .displayMode) { [weak self] in
+            print("⌨️  DISPLAY MODE TRIGGERED!")
+            guard let self = self else { return }
+            Task { @MainActor in
+                await self.handleHotkey(mode: .display)
+            }
+        }
+
+        print("🔑 Hotkey listeners registered")
     }
 
     @MainActor
-    private func handleOptimizePrompt() async {
-        print("🔄 Starting prompt optimization...")
+    private func handleHotkey(mode: HotkeyMode) async {
+        print("🔄 Starting \(mode == .replace ? "replace" : "display") mode...")
 
-        // Show status window
         statusWindow.show(message: "Preparing...")
 
         do {
-            // Check configuration first
             print("🔍 Validating configuration...")
             statusWindow.updateMessage("Validating configuration...")
             try await promptEngine.validateConfiguration()
             print("✅ Configuration valid")
 
-            // Capture selected text
             print("📋 Capturing selected text...")
             statusWindow.updateMessage("Capturing text...")
             let selectedText = try await textCaptureService.captureSelectedText()
@@ -65,61 +79,46 @@ class HotkeyManager {
                 throw PromptSparkError.noTextSelected
             }
 
-            // Process with AI
             print("🤖 Sending to AI...")
-            statusWindow.updateMessage("Optimizing with AI...")
-            let optimizedText = try await promptEngine.processText(selectedText)
-            print("✅ Received optimized text (\(optimizedText.count) chars): \(optimizedText.prefix(50))...")
+            statusWindow.updateMessage(mode == .replace ? "Optimizing with AI..." : "Summarizing with AI...")
 
-            // Replace with optimized text
-            print("📝 Replacing text...")
-            statusWindow.updateMessage("Replacing...")
+            let result: String
+            if mode == .replace {
+                result = try await promptEngine.processText(selectedText)
+            } else {
+                result = try await promptEngine.summarizeText(selectedText)
+            }
 
-            // Delay to ensure UI is ready
-            try? await Task.sleep(nanoseconds: 200_000_000) // 200ms
+            print("✅ Received result (\(result.count) chars): \(result.prefix(50))...")
 
-            try await textCaptureService.replaceWithOptimizedText(optimizedText)
-            print("✅ Text replaced successfully")
+            switch mode {
+            case .replace:
+                print("📝 Replacing text...")
+                statusWindow.updateMessage("Replacing...")
+                try? await Task.sleep(nanoseconds: 200_000_000)
+                try await textCaptureService.replaceWithOptimizedText(result)
+                print("✅ Text replaced successfully")
 
-            // Show success and hide quickly
-            statusWindow.updateMessage("Done! ✨")
-            try? await Task.sleep(nanoseconds: 800_000_000) // 0.8 second
+                statusWindow.updateMessage("Done! ✨")
+                try? await Task.sleep(nanoseconds: 800_000_000)
+                statusWindow.hide()
 
-            // Hide the window
-            statusWindow.hide()
-            print("✅ Status window hidden")
+                notificationService.showNotification(
+                    title: "PromptSpark",
+                    message: "Prompt optimized successfully! ✨"
+                )
 
-            // Show success notification
-            notificationService.showNotification(
-                title: "PromptSpark",
-                message: "Prompt optimized successfully! ✨"
-            )
+            case .display:
+                statusWindow.hide()
+                print("📺 Showing result window...")
+                resultWindow.show(originalText: selectedText, result: result)
+                print("✅ Result window displayed")
+            }
 
         } catch {
             print("❌ Error: \(error.localizedDescription)")
             statusWindow.hide()
             notificationService.showError(error)
         }
-    }
-
-    func registerProfileHotkey(for profile: Profile, name: KeyboardShortcuts.Name) {
-        KeyboardShortcuts.onKeyUp(for: name) { [weak self] in
-            guard let self = self else { return }
-            Task { @MainActor in
-                await self.handleProfileOptimization(profile: profile)
-            }
-        }
-    }
-
-    @MainActor
-    private func handleProfileOptimization(profile: Profile) async {
-        // Set active profile temporarily for this operation
-        let originalProfile = AppState.shared.activeProfile
-        AppState.shared.activeProfile = profile
-
-        await handleOptimizePrompt()
-
-        // Restore original profile
-        AppState.shared.activeProfile = originalProfile
     }
 }

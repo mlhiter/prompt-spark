@@ -79,13 +79,11 @@ class ConfigService {
     }
 
     func loadDefaultMetaPrompt() -> String {
-        // Try to load from resources first
         if let url = Bundle.main.url(forResource: "DefaultMetaPrompt", withExtension: "txt"),
            let content = try? String(contentsOf: url) {
             return content
         }
 
-        // Fallback to embedded default
         return """
 You are an expert prompt engineer. Your task is to transform the user's casual, vague input into a well-structured, detailed prompt that will produce high-quality AI responses.
 
@@ -99,6 +97,27 @@ Analyze the user's intent and:
 Keep the tone professional but natural. Preserve the user's original goal while enhancing clarity and completeness.
 
 User's original input:
+"""
+    }
+
+    func loadDefaultSummaryPrompt() -> String {
+        if let url = Bundle.main.url(forResource: "DefaultSummaryPrompt", withExtension: "txt"),
+           let content = try? String(contentsOf: url) {
+            return content
+        }
+
+        return """
+You are an expert content analyzer and summarizer. Your task is to read the provided content and create a clear, concise, and easy-to-understand summary.
+
+Provide a well-structured summary that:
+- Captures the main ideas and key points
+- Uses simple, clear language
+- Maintains the original meaning
+- Highlights important facts or conclusions
+
+Your summary MUST be in the same language as the input content.
+
+Content to summarize:
 """
     }
 
