@@ -1,0 +1,18 @@
+# Build
+/.build
+/Packages
+Package.resolved
+.swiftpm
+
+# Xcode
+xcuserdata/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
