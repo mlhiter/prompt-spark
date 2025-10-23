@@ -79,6 +79,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.activate(ignoringOtherApps: true)
     }
 
+    @MainActor
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        print("🖱️ Dock icon clicked")
+        openSettings()
+        return true
+    }
+
     private func checkAccessibilityPermission() {
         let accessEnabled = AXIsProcessTrusted()
 
