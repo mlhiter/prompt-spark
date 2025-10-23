@@ -111,4 +111,17 @@ User's original input:
     func setActiveProfileID(_ id: String) {
         userDefaults.set(id, forKey: Constants.UserDefaults.activeProfileID)
     }
+
+    // MARK: - Dock Icon
+
+    func loadShowInDock() -> Bool {
+        if userDefaults.object(forKey: Constants.UserDefaults.showInDock) == nil {
+            return true
+        }
+        return userDefaults.bool(forKey: Constants.UserDefaults.showInDock)
+    }
+
+    func saveShowInDock(_ show: Bool) {
+        userDefaults.set(show, forKey: Constants.UserDefaults.showInDock)
+    }
 }

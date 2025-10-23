@@ -13,6 +13,7 @@ enum Constants {
         static let temperature = "temperature"
         static let timeout = "timeout"
         static let activeProfileID = "activeProfileID"
+        static let showInDock = "showInDock"
     }
 
     enum Keychain {

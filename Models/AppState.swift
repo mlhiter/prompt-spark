@@ -9,6 +9,7 @@ class AppState: ObservableObject {
     @Published var activeProfile: Profile?
     @Published var apiConfig: APIConfig = APIConfig()
     @Published var isProcessing: Bool = false
+    @Published var showInDock: Bool = false
 
     private let configService: ConfigService
 
@@ -24,6 +25,9 @@ class AppState: ObservableObject {
         // Load profiles
         self.profiles = configService.loadProfiles()
 
+        // Load show in dock setting
+        self.showInDock = configService.loadShowInDock()
+
         // Set active profile
         if let activeIDString = configService.activeProfileID,
            let activeID = UUID(uuidString: activeIDString),
@@ -38,6 +42,7 @@ class AppState: ObservableObject {
     func saveConfiguration() {
         configService.saveAPIConfig(apiConfig)
         configService.saveProfiles(profiles)
+        configService.saveShowInDock(showInDock)
         if let activeID = activeProfile?.id {
             configService.setActiveProfileID(activeID.uuidString)
         }

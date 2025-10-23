@@ -5,6 +5,11 @@ struct SettingsView: View {
 
     var body: some View {
         TabView {
+            GeneralSettingsView()
+                .tabItem {
+                    Label("General", systemImage: "gearshape")
+                }
+
             APISettingsView()
                 .tabItem {
                     Label("API", systemImage: "network")

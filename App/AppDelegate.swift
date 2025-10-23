@@ -1,27 +1,36 @@
 import Cocoa
 import SwiftUI
+import Combine
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusItem: NSStatusItem?
     var menuBarController: MenuBarController?
     var settingsWindow: NSWindow?
+    private var cancellables = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("🚀 PromptSpark is launching...")
-
-        // Hide from Dock
-        NSApp.setActivationPolicy(.accessory)
-
-        // Initialize menubar and pass self reference
-        Task { @MainActor in
-            menuBarController = MenuBarController(appDelegate: self)
-            print("✅ MenuBar initialized")
-        }
 
         // Initialize services
         Task { @MainActor in
             _ = AppState.shared
             print("✅ AppState initialized")
+
+            // Set initial activation policy based on saved setting
+            updateActivationPolicy(showInDock: AppState.shared.showInDock)
+
+            // Observe showInDock changes
+            AppState.shared.$showInDock
+                .sink { [weak self] showInDock in
+                    self?.updateActivationPolicy(showInDock: showInDock)
+                }
+                .store(in: &cancellables)
+        }
+
+        // Initialize menubar and pass self reference
+        Task { @MainActor in
+            menuBarController = MenuBarController(appDelegate: self)
+            print("✅ MenuBar initialized")
         }
 
         // Initialize hotkey manager
@@ -34,6 +43,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         checkAccessibilityPermission()
 
         print("🎉 PromptSpark launched successfully")
+    }
+
+    @MainActor
+    private func updateActivationPolicy(showInDock: Bool) {
+        if showInDock {
+            NSApp.setActivationPolicy(.regular)
+            print("🔧 Dock icon enabled")
+        } else {
+            NSApp.setActivationPolicy(.accessory)
+            print("🔧 Dock icon hidden")
+        }
     }
 
     @MainActor
