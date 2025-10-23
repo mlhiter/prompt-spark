@@ -84,33 +84,69 @@ struct ProfileEditorView: View {
     @Binding var profile: Profile
 
     var body: some View {
-        Form {
-            Section {
+        VStack(alignment: .leading, spacing: 0) {
+            // Profile Info Section
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Profile Info")
+                    .font(.headline)
+                    .foregroundColor(.secondary)
+
                 TextField("Profile Name", text: $profile.name)
+                    .textFieldStyle(.roundedBorder)
 
                 Button(profile.isActive ? "Active Profile" : "Set as Active") {
                     AppState.shared.setActiveProfile(profile)
                 }
                 .buttonStyle(.borderedProminent)
                 .disabled(profile.isActive)
-            } header: {
-                Text("Profile Info")
             }
+            .padding()
 
-            Section {
-                TextEditor(text: $profile.metaPrompt)
-                    .font(.system(.body, design: .monospaced))
-                    .frame(minHeight: 200)
+            Divider()
+
+            // Meta Prompt Section
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text("Meta Prompt")
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+
+                    Spacer()
+
+                    Button(action: resetToDefault) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "arrow.counterclockwise")
+                            Text("Reset to Default")
+                        }
+                        .font(.caption)
+                    }
+                    .buttonStyle(.borderless)
+                    .help("Load the latest default meta-prompt")
+                }
 
                 Text("This is the system prompt used to transform user input")
                     .font(.caption)
                     .foregroundColor(.secondary)
-            } header: {
-                Text("Meta Prompt")
+
+                // TextEditor with custom scroll
+                TextEditor(text: $profile.metaPrompt)
+                    .font(.system(.body, design: .monospaced))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .scrollContentBackground(.hidden)
+                    .background(Color(nsColor: .textBackgroundColor))
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    )
             }
+            .padding()
         }
-        .formStyle(.grouped)
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    private func resetToDefault() {
+        profile.metaPrompt = ConfigService.shared.loadDefaultMetaPrompt()
     }
 }
 
@@ -153,6 +189,7 @@ struct AddProfileView: View {
         }
     }
 
+    @MainActor
     private func createProfile() {
         let profile = Profile(
             name: profileName,
