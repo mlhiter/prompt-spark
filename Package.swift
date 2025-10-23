@@ -21,9 +21,13 @@ let package = Package(
                 "CLAUDE.md",
                 "tech-architecture.md",
                 "white-paper.md",
+                "RELEASE.md",
+                "Info.plist",
+                "Scripts",
                 ".gitignore",
                 ".build",
-                ".claude"
+                ".claude",
+                ".github"
             ],
             sources: [
                 "App",

@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Swift
+      uses: swift-actions/setup-swift@v2
+      with:
+        swift-version: "5.9"
+
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Make scripts executable
+      run: |
+        chmod +x Scripts/build.sh
+        chmod +x Scripts/create-dmg.sh
+
+    - name: Build app
+      run: ./Scripts/build.sh ${{ steps.get_version.outputs.VERSION }}
+
+    - name: Create DMG
+      run: ./Scripts/create-dmg.sh ${{ steps.get_version.outputs.VERSION }}
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: .build/release/PromptSpark-${{ steps.get_version.outputs.VERSION }}.dmg
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

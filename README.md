@@ -19,27 +19,27 @@ PromptSpark is a macOS menubar application that automatically optimizes your pro
 ### Requirements
 
 - macOS 13 Ventura or later
-- Swift 5.9 or later (for building from source)
+
+### Download Pre-built App
+
+1. Go to [Releases](https://github.com/mlhiter/prompt-spark/releases)
+2. Download the latest `PromptSpark-x.x.x.dmg`
+3. Open the DMG file
+4. Drag PromptSpark.app to your Applications folder
+5. Launch PromptSpark from Applications
 
 ### Building from Source
 
-1. Clone the repository:
+If you prefer to build from source:
+
 ```bash
-git clone https://github.com/yourusername/prompt-spark.git
-cd prompt-spark/PromptSpark
+git clone https://github.com/mlhiter/prompt-spark.git
+cd prompt-spark
+./Scripts/build.sh
+./Scripts/create-dmg.sh
 ```
 
-2. Build the project:
-```bash
-swift build -c release
-```
-
-3. Run the application:
-```bash
-swift run
-```
-
-Alternatively, open the project in Xcode and build from there.
+The DMG will be created in `.build/release/`
 
 ## Setup
 
@@ -218,8 +218,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
-- Issues: [GitHub Issues](https://github.com/yourusername/prompt-spark/issues)
-- Discussions: [GitHub Discussions](https://github.com/yourusername/prompt-spark/discussions)
+- Issues: [GitHub Issues](https://github.com/mlhiter/prompt-spark/issues)
+- Discussions: [GitHub Discussions](https://github.com/mlhiter/prompt-spark/discussions)
 
 ## Roadmap
 
