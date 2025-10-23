@@ -31,8 +31,9 @@ class HotkeyManager {
 
         KeyboardShortcuts.onKeyUp(for: .optimizePrompt) { [weak self] in
             print("⌨️  HOTKEY TRIGGERED! Cmd+Shift+P pressed")
+            guard let self = self else { return }
             Task { @MainActor in
-                await self?.handleOptimizePrompt()
+                await self.handleOptimizePrompt()
             }
         }
         print("🔑 Hotkey listener registered")
@@ -103,8 +104,9 @@ class HotkeyManager {
 
     func registerProfileHotkey(for profile: Profile, name: KeyboardShortcuts.Name) {
         KeyboardShortcuts.onKeyUp(for: name) { [weak self] in
+            guard let self = self else { return }
             Task { @MainActor in
-                await self?.handleProfileOptimization(profile: profile)
+                await self.handleProfileOptimization(profile: profile)
             }
         }
     }
