@@ -84,5 +84,17 @@ else
     echo "  ⚠️  Signing failed, but build will continue"
 fi
 
+echo "🔗 Creating symlinks for resource bundles..."
+cd "$APP_BUNDLE"
+if [ -d "Contents/Resources/KeyboardShortcuts_KeyboardShortcuts.bundle" ]; then
+    ln -sf "Contents/Resources/KeyboardShortcuts_KeyboardShortcuts.bundle" "KeyboardShortcuts_KeyboardShortcuts.bundle"
+    echo "  ✅ KeyboardShortcuts symlink created"
+fi
+if [ -d "Contents/Resources/PromptSpark_PromptSpark.bundle" ]; then
+    ln -sf "Contents/Resources/PromptSpark_PromptSpark.bundle" "PromptSpark_PromptSpark.bundle"
+    echo "  ✅ PromptSpark symlink created"
+fi
+cd - > /dev/null
+
 echo "✅ Build complete: $APP_BUNDLE"
 echo "📏 App size: $(du -sh "$APP_BUNDLE" | cut -f1)"
