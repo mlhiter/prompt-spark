@@ -29,6 +29,26 @@ cp "Info.plist" "$CONTENTS_DIR/"
 
 echo "📦 Copying resources..."
 cp "Resources/DefaultMetaPrompt.txt" "$RESOURCES_DIR/"
+cp "Resources/DefaultSummaryPrompt.txt" "$RESOURCES_DIR/"
+
+echo "🎨 Generating app icon..."
+ICONSET_DIR="/tmp/AppIcon.iconset"
+rm -rf "$ICONSET_DIR"
+mkdir -p "$ICONSET_DIR"
+
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_16x16.png" "$ICONSET_DIR/icon_16x16.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_16x16@2x.png" "$ICONSET_DIR/icon_16x16@2x.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_32x32.png" "$ICONSET_DIR/icon_32x32.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_32x32@2x.png" "$ICONSET_DIR/icon_32x32@2x.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_128x128.png" "$ICONSET_DIR/icon_128x128.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png" "$ICONSET_DIR/icon_128x128@2x.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256.png" "$ICONSET_DIR/icon_256x256.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_256x256@2x.png" "$ICONSET_DIR/icon_256x256@2x.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512.png" "$ICONSET_DIR/icon_512x512.png"
+cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" "$ICONSET_DIR/icon_512x512@2x.png"
+
+iconutil -c icns "$ICONSET_DIR" -o "$RESOURCES_DIR/AppIcon.icns"
+rm -rf "$ICONSET_DIR"
 
 echo "✅ Build complete: $APP_BUNDLE"
 echo "📏 App size: $(du -sh "$APP_BUNDLE" | cut -f1)"
