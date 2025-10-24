@@ -27,6 +27,17 @@ cp "$BUILD_DIR/$APP_NAME" "$MACOS_DIR/"
 echo "📄 Copying Info.plist..."
 cp "Info.plist" "$CONTENTS_DIR/"
 
+echo "📦 Copying resource bundles..."
+if [ -d "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" ]; then
+    cp -R "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" "$RESOURCES_DIR/"
+    echo "  ✅ KeyboardShortcuts bundle copied"
+fi
+
+if [ -d "$BUILD_DIR/PromptSpark_PromptSpark.bundle" ]; then
+    cp -R "$BUILD_DIR/PromptSpark_PromptSpark.bundle" "$RESOURCES_DIR/"
+    echo "  ✅ PromptSpark bundle copied"
+fi
+
 echo "📦 Copying resources..."
 cp "Resources/DefaultMetaPrompt.txt" "$RESOURCES_DIR/"
 cp "Resources/DefaultSummaryPrompt.txt" "$RESOURCES_DIR/"
