@@ -2,20 +2,34 @@
 set -e
 
 VERSION=${1:-"1.0.0"}
+ARCH=${2:-$(uname -m)}
 APP_NAME="PromptSpark"
-BUILD_DIR=".build/release"
+
+if [ "$ARCH" = "arm64" ]; then
+    SWIFT_ARCH="arm64-apple-macosx"
+    ARCH_NAME="arm64"
+elif [ "$ARCH" = "x86_64" ]; then
+    SWIFT_ARCH="x86_64-apple-macosx"
+    ARCH_NAME="x86_64"
+else
+    echo "❌ Unsupported architecture: $ARCH"
+    echo "   Supported: arm64, x86_64"
+    exit 1
+fi
+
+BUILD_DIR=".build/$SWIFT_ARCH/release"
 APP_BUNDLE="$BUILD_DIR/$APP_NAME.app"
 CONTENTS_DIR="$APP_BUNDLE/Contents"
 MACOS_DIR="$CONTENTS_DIR/MacOS"
 RESOURCES_DIR="$CONTENTS_DIR/Resources"
 
-echo "🔨 Building $APP_NAME v$VERSION..."
+echo "🔨 Building $APP_NAME v$VERSION for $ARCH_NAME..."
 
 echo "📦 Cleaning previous builds..."
 rm -rf "$APP_BUNDLE"
 
 echo "🚀 Building with Swift..."
-swift build -c release
+swift build -c release --arch $ARCH
 
 echo "📁 Creating app bundle structure..."
 mkdir -p "$MACOS_DIR"
