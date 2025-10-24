@@ -8,15 +8,47 @@
 
 /* Begin PBXFileReference section */
 		08E0F9BD2EAB928500073113 /* prompt-spark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "prompt-spark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		08E0F9CB2EAB92EA00073113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		08E0F9CC2EAB92EA00073113 /* PromptSparkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSparkApp.swift; sourceTree = "<group>"; };
+		08E0F9CE2EAB92EA00073113 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
+		08E0F9CF2EAB92EA00073113 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		08E0F9D02EAB92EA00073113 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
+		08E0F9D12EAB92EA00073113 /* PromptEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEngine.swift; sourceTree = "<group>"; };
+		08E0F9D22EAB92EA00073113 /* TextCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCaptureService.swift; sourceTree = "<group>"; };
+		08E0F9D42EAB92EA00073113 /* DEVELOPMENT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DEVELOPMENT.md; sourceTree = "<group>"; };
+		08E0F9D52EAB92EA00073113 /* APIConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
+		08E0F9D62EAB92EA00073113 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		08E0F9D72EAB92EA00073113 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		08E0F9D82EAB92EA00073113 /* PromptSparkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptSparkError.swift; sourceTree = "<group>"; };
+		08E0F9DA2EAB92EA00073113 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		08E0F9DB2EAB92EA00073113 /* RELEASE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RELEASE.md; sourceTree = "<group>"; };
+		08E0F9DC2EAB92EA00073113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		08E0F9DD2EAB92EA00073113 /* DefaultMetaPrompt.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = DefaultMetaPrompt.txt; sourceTree = "<group>"; };
+		08E0F9DE2EAB92EA00073113 /* DefaultSummaryPrompt.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = DefaultSummaryPrompt.txt; sourceTree = "<group>"; };
+		08E0F9DF2EAB92EA00073113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08E0F9E12EAB92EA00073113 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		08E0F9E22EAB92EA00073113 /* create-dmg.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "create-dmg.sh"; sourceTree = "<group>"; };
+		08E0F9E32EAB92EA00073113 /* generate-app-icon.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "generate-app-icon.sh"; sourceTree = "<group>"; };
+		08E0F9E42EAB92EA00073113 /* post-install-fix.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "post-install-fix.sh"; sourceTree = "<group>"; };
+		08E0F9E62EAB92EA00073113 /* ConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigService.swift; sourceTree = "<group>"; };
+		08E0F9E72EAB92EA00073113 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		08E0F9E82EAB92EA00073113 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		08E0F9E92EAB92EA00073113 /* PasteboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardService.swift; sourceTree = "<group>"; };
+		08E0F9EB2EAB92EA00073113 /* tech-architecture.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "tech-architecture.md"; sourceTree = "<group>"; };
+		08E0F9EC2EAB92EA00073113 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		08E0F9ED2EAB92EA00073113 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		08E0F9EF2EAB92EA00073113 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		08E0F9F02EAB92EA00073113 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		08E0F9F22EAB92EA00073113 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		08E0F9F42EAB92EA00073113 /* APISettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISettingsView.swift; sourceTree = "<group>"; };
+		08E0F9F52EAB92EA00073113 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		08E0F9F62EAB92EA00073113 /* ProfileManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerView.swift; sourceTree = "<group>"; };
+		08E0F9F72EAB92EA00073113 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		08E0F9F92EAB92EA00073113 /* ResultWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWindow.swift; sourceTree = "<group>"; };
+		08E0F9FA2EAB92EA00073113 /* StatusWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWindow.swift; sourceTree = "<group>"; };
+		08E0F9FC2EAB92EA00073113 /* white-paper.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "white-paper.md"; sourceTree = "<group>"; };
+		08E0F9FD2EAB92EA00073113 /* XCODE_MIGRATION_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = XCODE_MIGRATION_GUIDE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		08E0F9BF2EAB928500073113 /* prompt-spark */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "prompt-spark";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		08E0F9BA2EAB928500073113 /* Frameworks */ = {
@@ -32,8 +64,22 @@
 		08E0F9B42EAB928500073113 = {
 			isa = PBXGroup;
 			children = (
-				08E0F9BF2EAB928500073113 /* prompt-spark */,
 				08E0F9BE2EAB928500073113 /* Products */,
+				08E0F9CD2EAB92EA00073113 /* App */,
+				08E0F9CE2EAB92EA00073113 /* CLAUDE.md */,
+				08E0F9D32EAB92EA00073113 /* Core */,
+				08E0F9D42EAB92EA00073113 /* DEVELOPMENT.md */,
+				08E0F9D92EAB92EA00073113 /* Models */,
+				08E0F9DA2EAB92EA00073113 /* README.md */,
+				08E0F9DB2EAB92EA00073113 /* RELEASE.md */,
+				08E0F9E02EAB92EA00073113 /* Resources */,
+				08E0F9E52EAB92EA00073113 /* Scripts */,
+				08E0F9EA2EAB92EA00073113 /* Services */,
+				08E0F9EB2EAB92EA00073113 /* tech-architecture.md */,
+				08E0F9F12EAB92EA00073113 /* Utils */,
+				08E0F9FB2EAB92EA00073113 /* Views */,
+				08E0F9FC2EAB92EA00073113 /* white-paper.md */,
+				08E0F9FD2EAB92EA00073113 /* XCODE_MIGRATION_GUIDE.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +89,119 @@
 				08E0F9BD2EAB928500073113 /* prompt-spark.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		08E0F9CD2EAB92EA00073113 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9CB2EAB92EA00073113 /* AppDelegate.swift */,
+				08E0F9CC2EAB92EA00073113 /* PromptSparkApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		08E0F9D32EAB92EA00073113 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9CF2EAB92EA00073113 /* APIClient.swift */,
+				08E0F9D02EAB92EA00073113 /* HotkeyManager.swift */,
+				08E0F9D12EAB92EA00073113 /* PromptEngine.swift */,
+				08E0F9D22EAB92EA00073113 /* TextCaptureService.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		08E0F9D92EAB92EA00073113 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9D52EAB92EA00073113 /* APIConfig.swift */,
+				08E0F9D62EAB92EA00073113 /* AppState.swift */,
+				08E0F9D72EAB92EA00073113 /* Profile.swift */,
+				08E0F9D82EAB92EA00073113 /* PromptSparkError.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08E0F9E02EAB92EA00073113 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9DC2EAB92EA00073113 /* Assets.xcassets */,
+				08E0F9DD2EAB92EA00073113 /* DefaultMetaPrompt.txt */,
+				08E0F9DE2EAB92EA00073113 /* DefaultSummaryPrompt.txt */,
+				08E0F9DF2EAB92EA00073113 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		08E0F9E52EAB92EA00073113 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9E12EAB92EA00073113 /* build.sh */,
+				08E0F9E22EAB92EA00073113 /* create-dmg.sh */,
+				08E0F9E32EAB92EA00073113 /* generate-app-icon.sh */,
+				08E0F9E42EAB92EA00073113 /* post-install-fix.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		08E0F9EA2EAB92EA00073113 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9E62EAB92EA00073113 /* ConfigService.swift */,
+				08E0F9E72EAB92EA00073113 /* KeychainService.swift */,
+				08E0F9E82EAB92EA00073113 /* NotificationService.swift */,
+				08E0F9E92EAB92EA00073113 /* PasteboardService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		08E0F9EE2EAB92EA00073113 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9EC2EAB92EA00073113 /* String+Extensions.swift */,
+				08E0F9ED2EAB92EA00073113 /* UserDefaults+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		08E0F9F12EAB92EA00073113 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9EE2EAB92EA00073113 /* Extensions */,
+				08E0F9EF2EAB92EA00073113 /* Constants.swift */,
+				08E0F9F02EAB92EA00073113 /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		08E0F9F32EAB92EA00073113 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9F22EAB92EA00073113 /* MenuBarController.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		08E0F9F82EAB92EA00073113 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9F42EAB92EA00073113 /* APISettingsView.swift */,
+				08E0F9F52EAB92EA00073113 /* GeneralSettingsView.swift */,
+				08E0F9F62EAB92EA00073113 /* ProfileManagerView.swift */,
+				08E0F9F72EAB92EA00073113 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		08E0F9FB2EAB92EA00073113 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				08E0F9F32EAB92EA00073113 /* MenuBar */,
+				08E0F9F82EAB92EA00073113 /* Settings */,
+				08E0F9F92EAB92EA00073113 /* ResultWindow.swift */,
+				08E0F9FA2EAB92EA00073113 /* StatusWindow.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +218,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				08E0F9BF2EAB928500073113 /* prompt-spark */,
 			);
 			name = "prompt-spark";
 			packageProductDependencies = (
@@ -264,6 +420,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mlhiter.prompt-spark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +453,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mlhiter.prompt-spark";
 				PRODUCT_NAME = "$(TARGET_NAME)";
