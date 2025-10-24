@@ -23,11 +23,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@v2
-      with:
-        swift-version: "5.9"
-
     - name: Get version from tag
       id: get_version
       run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
@@ -47,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: PromptSpark-${{ steps.get_version.outputs.VERSION }}-${{ matrix.arch }}
-        path: .build/${{ matrix.arch }}-apple-macosx/release/PromptSpark-${{ steps.get_version.outputs.VERSION }}-${{ matrix.arch }}.dmg
+        path: build/${{ matrix.arch }}/PromptSpark-${{ steps.get_version.outputs.VERSION }}-${{ matrix.arch }}.dmg
 
   release:
     needs: build

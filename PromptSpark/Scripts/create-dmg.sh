@@ -4,17 +4,16 @@ set -e
 VERSION=${1:-"1.0.0"}
 ARCH=${2:-""}
 APP_NAME="PromptSpark"
+PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+BUILD_ROOT="$PROJECT_DIR/build"
 
 if [ -z "$ARCH" ]; then
-    if [ -d ".build/arm64-apple-macosx/release/$APP_NAME.app" ]; then
+    if [ -d "$BUILD_ROOT/arm64/$APP_NAME.app" ]; then
         ARCH="arm64"
-        BUILD_DIR=".build/arm64-apple-macosx/release"
-    elif [ -d ".build/x86_64-apple-macosx/release/$APP_NAME.app" ]; then
+        BUILD_DIR="$BUILD_ROOT/arm64"
+    elif [ -d "$BUILD_ROOT/x86_64/$APP_NAME.app" ]; then
         ARCH="x86_64"
-        BUILD_DIR=".build/x86_64-apple-macosx/release"
-    elif [ -d ".build/release/$APP_NAME.app" ]; then
-        ARCH=$(file ".build/release/$APP_NAME" | grep -o "arm64\|x86_64" | head -1)
-        BUILD_DIR=".build/release"
+        BUILD_DIR="$BUILD_ROOT/x86_64"
     else
         echo "❌ Error: No app bundle found"
         echo "   Run ./Scripts/build.sh first"
@@ -22,9 +21,9 @@ if [ -z "$ARCH" ]; then
     fi
 else
     if [ "$ARCH" = "arm64" ]; then
-        BUILD_DIR=".build/arm64-apple-macosx/release"
+        BUILD_DIR="$BUILD_ROOT/arm64"
     elif [ "$ARCH" = "x86_64" ]; then
-        BUILD_DIR=".build/x86_64-apple-macosx/release"
+        BUILD_DIR="$BUILD_ROOT/x86_64"
     else
         echo "❌ Unsupported architecture: $ARCH"
         exit 1
@@ -50,16 +49,6 @@ mkdir -p "$DMG_DIR"
 
 echo "📦 Copying app bundle..."
 cp -R "$APP_BUNDLE" "$DMG_DIR/"
-
-echo "📦 Copying resource bundles to DMG root..."
-if [ -d "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" ]; then
-    cp -R "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" "$DMG_DIR/"
-    echo "  ✅ KeyboardShortcuts bundle copied"
-fi
-if [ -d "$BUILD_DIR/PromptSpark_PromptSpark.bundle" ]; then
-    cp -R "$BUILD_DIR/PromptSpark_PromptSpark.bundle" "$DMG_DIR/"
-    echo "  ✅ PromptSpark bundle copied"
-fi
 
 echo "🔗 Creating Applications symlink..."
 ln -s /Applications "$DMG_DIR/Applications"
