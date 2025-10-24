@@ -41,15 +41,15 @@ cp "$BUILD_DIR/$APP_NAME" "$MACOS_DIR/"
 echo "📄 Copying Info.plist..."
 cp "Info.plist" "$CONTENTS_DIR/"
 
-echo "📦 Copying resource bundles..."
+echo "📦 Copying resource bundles to app root..."
 if [ -d "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" ]; then
-    cp -R "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" "$RESOURCES_DIR/"
-    echo "  ✅ KeyboardShortcuts bundle copied"
+    cp -R "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" "$APP_BUNDLE/"
+    echo "  ✅ KeyboardShortcuts bundle copied to app root"
 fi
 
 if [ -d "$BUILD_DIR/PromptSpark_PromptSpark.bundle" ]; then
-    cp -R "$BUILD_DIR/PromptSpark_PromptSpark.bundle" "$RESOURCES_DIR/"
-    echo "  ✅ PromptSpark bundle copied"
+    cp -R "$BUILD_DIR/PromptSpark_PromptSpark.bundle" "$APP_BUNDLE/"
+    echo "  ✅ PromptSpark bundle copied to app root"
 fi
 
 echo "📦 Copying resources..."
@@ -75,13 +75,20 @@ cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" "$ICONSET_
 iconutil -c icns "$ICONSET_DIR" -o "$RESOURCES_DIR/AppIcon.icns"
 rm -rf "$ICONSET_DIR"
 
+echo "✍️  Signing bundles individually..."
+for bundle in "$APP_BUNDLE"/*.bundle; do
+    if [ -d "$bundle" ]; then
+        codesign --force --sign - "$bundle" 2>/dev/null && echo "  ✅ Signed $(basename "$bundle")"
+    fi
+done
+
 echo "✍️  Signing app bundle..."
-codesign --force --deep --sign - "$APP_BUNDLE"
-if [ $? -eq 0 ]; then
+codesign --force --deep --sign - --preserve-metadata=identifier,entitlements,flags,runtime "$APP_BUNDLE" 2>&1 | grep -v "replacing existing signature" || true
+if codesign -v "$APP_BUNDLE" 2>/dev/null; then
     echo "  ✅ App signed successfully"
     codesign -dv "$APP_BUNDLE" 2>&1 | grep -E "(Identifier|Signature)" | head -2
 else
-    echo "  ⚠️  Signing failed, but build will continue"
+    echo "  ⚠️  Signature validation failed, but app may still work"
 fi
 
 echo "✅ Build complete: $APP_BUNDLE"
