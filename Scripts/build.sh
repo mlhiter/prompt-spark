@@ -75,5 +75,14 @@ cp "Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" "$ICONSET_
 iconutil -c icns "$ICONSET_DIR" -o "$RESOURCES_DIR/AppIcon.icns"
 rm -rf "$ICONSET_DIR"
 
+echo "✍️  Signing app bundle..."
+codesign --force --deep --sign - "$APP_BUNDLE"
+if [ $? -eq 0 ]; then
+    echo "  ✅ App signed successfully"
+    codesign -dv "$APP_BUNDLE" 2>&1 | grep -E "(Identifier|Signature)" | head -2
+else
+    echo "  ⚠️  Signing failed, but build will continue"
+fi
+
 echo "✅ Build complete: $APP_BUNDLE"
 echo "📏 App size: $(du -sh "$APP_BUNDLE" | cut -f1)"

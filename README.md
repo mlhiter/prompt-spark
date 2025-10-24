@@ -19,14 +19,32 @@ PromptSpark is a macOS menubar application that automatically optimizes your pro
 ### Requirements
 
 - macOS 13 Ventura or later
+- Apple Silicon (M1/M2/M3) or Intel processor
 
 ### Download Pre-built App
 
 1. Go to [Releases](https://github.com/mlhiter/prompt-spark/releases)
-2. Download the latest `PromptSpark-x.x.x.dmg`
+2. Download the appropriate DMG for your Mac:
+   - **Apple Silicon (M1/M2/M3)**: `PromptSpark-x.x.x-arm64.dmg`
+   - **Intel**: `PromptSpark-x.x.x-x86_64.dmg`
 3. Open the DMG file
 4. Drag PromptSpark.app to your Applications folder
-5. Launch PromptSpark from Applications
+5. **Important**: Remove macOS quarantine flag (see below)
+6. Launch PromptSpark from Applications
+
+#### Removing macOS Gatekeeper Quarantine
+
+Since PromptSpark is not notarized by Apple, macOS will block it from opening with an error like "PromptSpark is damaged and can't be opened". This is a security feature called Gatekeeper.
+
+To allow PromptSpark to run, open Terminal and execute:
+
+```bash
+xattr -cr /Applications/PromptSpark.app
+```
+
+**Alternative method**: Right-click the app → Select "Open" → Click "Open" in the dialog.
+
+After removing the quarantine flag, PromptSpark will launch normally.
 
 ### Building from Source
 
@@ -177,6 +195,16 @@ swift test
 
 ## Troubleshooting
 
+### "App is damaged" or "can't be opened" error
+This is macOS Gatekeeper blocking the app because it's not notarized by Apple.
+
+**Solution**: Remove the quarantine flag:
+```bash
+xattr -cr /Applications/PromptSpark.app
+```
+
+Or: Right-click the app → Select "Open" → Click "Open" in the dialog.
+
 ### Hotkey not working
 - Ensure Accessibility permission is granted
 - Check System Settings → Keyboard → Keyboard Shortcuts for conflicts
@@ -192,6 +220,11 @@ swift test
 - Make sure text is selected before pressing the hotkey
 - Verify Accessibility permission is granted
 - Check that the target application supports clipboard paste
+
+### Wrong architecture downloaded
+- **Apple Silicon Macs (M1/M2/M3)**: Download `*-arm64.dmg`
+- **Intel Macs**: Download `*-x86_64.dmg`
+- Check your Mac's chip: Apple menu → About This Mac
 
 ## Performance
 
