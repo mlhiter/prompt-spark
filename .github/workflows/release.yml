@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - runner: macos-14
+            arch: arm64
+          - runner: macos-13
+            arch: x86_64
+
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Make scripts executable
+      run: |
+        chmod +x Scripts/build.sh
+        chmod +x Scripts/create-dmg.sh
+
+    - name: Build app
+      run: ./Scripts/build.sh ${{ steps.get_version.outputs.VERSION }} ${{ matrix.arch }}
+
+    - name: Create DMG
+      run: ./Scripts/create-dmg.sh ${{ steps.get_version.outputs.VERSION }} ${{ matrix.arch }}
+
+    - name: Upload DMG artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: PromptSpark-${{ steps.get_version.outputs.VERSION }}-${{ matrix.arch }}
+        path: build/${{ matrix.arch }}/PromptSpark-${{ steps.get_version.outputs.VERSION }}-${{ matrix.arch }}.dmg
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Download all artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: artifacts
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: artifacts/**/*.dmg
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
