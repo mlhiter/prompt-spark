@@ -32,19 +32,22 @@ PromptSpark is a macOS menubar application that automatically optimizes your pro
 5. **Important**: Remove macOS quarantine flag (see below)
 6. Launch PromptSpark from Applications
 
-#### Removing macOS Gatekeeper Quarantine
+#### Launching the App
 
-Since PromptSpark is not notarized by Apple, macOS will block it from opening with an error like "PromptSpark is damaged and can't be opened". This is a security feature called Gatekeeper.
-
-To allow PromptSpark to run, open Terminal and execute:
+Due to Swift Package Manager's resource bundle placement, PromptSpark **must be launched via Terminal** (not by double-clicking):
 
 ```bash
-xattr -cr /Applications/PromptSpark.app
+/Applications/PromptSpark.app/Contents/MacOS/PromptSpark &
 ```
 
-**Alternative method**: Right-click the app → Select "Open" → Click "Open" in the dialog.
+Or use the provided helper script:
 
-After removing the quarantine flag, PromptSpark will launch normally.
+```bash
+cd /path/to/downloaded/dmg
+./Scripts/post-install-fix.sh
+```
+
+**Note**: This limitation is due to Swift PM placing resource bundles in a location that breaks macOS code signing. We're working on a better solution (migrating to Xcode project or finding an alternative to KeyboardShortcuts).
 
 ### Building from Source
 
