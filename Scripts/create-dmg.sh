@@ -51,6 +51,16 @@ mkdir -p "$DMG_DIR"
 echo "📦 Copying app bundle..."
 cp -R "$APP_BUNDLE" "$DMG_DIR/"
 
+echo "📦 Copying resource bundles to DMG root..."
+if [ -d "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" ]; then
+    cp -R "$BUILD_DIR/KeyboardShortcuts_KeyboardShortcuts.bundle" "$DMG_DIR/"
+    echo "  ✅ KeyboardShortcuts bundle copied"
+fi
+if [ -d "$BUILD_DIR/PromptSpark_PromptSpark.bundle" ]; then
+    cp -R "$BUILD_DIR/PromptSpark_PromptSpark.bundle" "$DMG_DIR/"
+    echo "  ✅ PromptSpark bundle copied"
+fi
+
 echo "🔗 Creating Applications symlink..."
 ln -s /Applications "$DMG_DIR/Applications"
 
