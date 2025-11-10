@@ -35,6 +35,9 @@ xcodebuild \
     -configuration Release \
     -arch "$XCODE_ARCH" \
     CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
+    CODE_SIGN_IDENTITY="-" \
+    CODE_SIGN_STYLE="Manual" \
+    DEVELOPMENT_TEAM="" \
     build
 
 if [ ! -d "$APP_BUNDLE" ]; then
@@ -43,7 +46,7 @@ if [ ! -d "$APP_BUNDLE" ]; then
 fi
 
 echo "✍️  Signing app bundle..."
-codesign --force --deep --sign - --preserve-metadata=identifier,entitlements,flags,runtime "$APP_BUNDLE" 2>&1 | grep -v "replacing existing signature" || true
+codesign --force --deep --sign - "$APP_BUNDLE" 2>&1 | grep -v "replacing existing signature" || true
 if codesign -v "$APP_BUNDLE" 2>/dev/null; then
     echo "  ✅ App signed successfully"
     codesign -dv "$APP_BUNDLE" 2>&1 | grep -E "(Identifier|Signature)" | head -2
