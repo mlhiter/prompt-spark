@@ -30,7 +30,7 @@ mkdir -p "$BUILD_DIR"
 
 echo "🚀 Building with Xcode..."
 xcodebuild \
-    -project "$PROJECT_DIR/PromptSpark.xcodeproj" \
+    -project "$PROJECT_DIR/prompt-spark.xcodeproj" \
     -scheme PromptSpark \
     -configuration Release \
     -arch "$XCODE_ARCH" \
