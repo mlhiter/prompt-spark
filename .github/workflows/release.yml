@@ -23,6 +23,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Select Xcode version
+      run: |
+        if [ "${{ matrix.runner }}" = "macos-14" ]; then
+          sudo xcode-select -s /Applications/Xcode_16.2.app
+        fi
+        xcodebuild -version
+
     - name: Get version from tag
       id: get_version
       run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
