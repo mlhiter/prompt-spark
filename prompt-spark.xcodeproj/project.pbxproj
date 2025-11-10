@@ -6,6 +6,38 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		08C385552EC1E4B500DBA78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9CB2EAB92EA00073113 /* AppDelegate.swift */; };
+		08C385562EC1E4B500DBA78F /* PromptSparkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9CC2EAB92EA00073113 /* PromptSparkApp.swift */; };
+		08C385572EC1E4B500DBA78F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9CF2EAB92EA00073113 /* APIClient.swift */; };
+		08C385582EC1E4B500DBA78F /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D02EAB92EA00073113 /* HotkeyManager.swift */; };
+		08C385592EC1E4B500DBA78F /* PromptEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D12EAB92EA00073113 /* PromptEngine.swift */; };
+		08C3855A2EC1E4B500DBA78F /* TextCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D22EAB92EA00073113 /* TextCaptureService.swift */; };
+		08C3855B2EC1E4B500DBA78F /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D52EAB92EA00073113 /* APIConfig.swift */; };
+		08C3855C2EC1E4B500DBA78F /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D62EAB92EA00073113 /* AppState.swift */; };
+		08C3855D2EC1E4B500DBA78F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D72EAB92EA00073113 /* Profile.swift */; };
+		08C3855E2EC1E4B500DBA78F /* PromptSparkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9D82EAB92EA00073113 /* PromptSparkError.swift */; };
+		08C3855F2EC1E4B500DBA78F /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9E62EAB92EA00073113 /* ConfigService.swift */; };
+		08C385602EC1E4B500DBA78F /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9E72EAB92EA00073113 /* KeychainService.swift */; };
+		08C385612EC1E4B500DBA78F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9E82EAB92EA00073113 /* NotificationService.swift */; };
+		08C385622EC1E4B500DBA78F /* PasteboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9E92EAB92EA00073113 /* PasteboardService.swift */; };
+		08C385632EC1E4B500DBA78F /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9EC2EAB92EA00073113 /* String+Extensions.swift */; };
+		08C385642EC1E4B500DBA78F /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9ED2EAB92EA00073113 /* UserDefaults+Extensions.swift */; };
+		08C385652EC1E4B500DBA78F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9EF2EAB92EA00073113 /* Constants.swift */; };
+		08C385662EC1E4B500DBA78F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F02EAB92EA00073113 /* Logger.swift */; };
+		08C385672EC1E4B500DBA78F /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F22EAB92EA00073113 /* MenuBarController.swift */; };
+		08C385682EC1E4B500DBA78F /* APISettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F42EAB92EA00073113 /* APISettingsView.swift */; };
+		08C385692EC1E4B500DBA78F /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F52EAB92EA00073113 /* GeneralSettingsView.swift */; };
+		08C3856A2EC1E4B500DBA78F /* ProfileManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F62EAB92EA00073113 /* ProfileManagerView.swift */; };
+		08C3856B2EC1E4B500DBA78F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F72EAB92EA00073113 /* SettingsView.swift */; };
+		08C3856C2EC1E4B500DBA78F /* ResultWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9F92EAB92EA00073113 /* ResultWindow.swift */; };
+		08C3856D2EC1E4B500DBA78F /* StatusWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E0F9FA2EAB92EA00073113 /* StatusWindow.swift */; };
+		08C3856E2EC1E4EA00DBA78F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E0F9DC2EAB92EA00073113 /* Assets.xcassets */; };
+		08C3856F2EC1E4EA00DBA78F /* DefaultMetaPrompt.txt in Resources */ = {isa = PBXBuildFile; fileRef = 08E0F9DD2EAB92EA00073113 /* DefaultMetaPrompt.txt */; };
+		08C385702EC1E4EA00DBA78F /* DefaultSummaryPrompt.txt in Resources */ = {isa = PBXBuildFile; fileRef = 08E0F9DE2EAB92EA00073113 /* DefaultSummaryPrompt.txt */; };
+		08C385732EC1E74000DBA78F /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 08C385722EC1E74000DBA78F /* KeyboardShortcuts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		08E0F9BD2EAB928500073113 /* prompt-spark.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "prompt-spark.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E0F9CB2EAB92EA00073113 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08C385732EC1E74000DBA78F /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +254,7 @@
 			);
 			name = "prompt-spark";
 			packageProductDependencies = (
+				08C385722EC1E74000DBA78F /* KeyboardShortcuts */,
 			);
 			productName = "prompt-spark";
 			productReference = 08E0F9BD2EAB928500073113 /* prompt-spark.app */;
@@ -250,6 +284,9 @@
 			);
 			mainGroup = 08E0F9B42EAB928500073113;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				08C385712EC1E74000DBA78F /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 08E0F9BE2EAB928500073113 /* Products */;
 			projectDirPath = "";
@@ -265,6 +302,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08C3856E2EC1E4EA00DBA78F /* Assets.xcassets in Resources */,
+				08C3856F2EC1E4EA00DBA78F /* DefaultMetaPrompt.txt in Resources */,
+				08C385702EC1E4EA00DBA78F /* DefaultSummaryPrompt.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +315,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08C385552EC1E4B500DBA78F /* AppDelegate.swift in Sources */,
+				08C385562EC1E4B500DBA78F /* PromptSparkApp.swift in Sources */,
+				08C385572EC1E4B500DBA78F /* APIClient.swift in Sources */,
+				08C385582EC1E4B500DBA78F /* HotkeyManager.swift in Sources */,
+				08C385592EC1E4B500DBA78F /* PromptEngine.swift in Sources */,
+				08C3855A2EC1E4B500DBA78F /* TextCaptureService.swift in Sources */,
+				08C3855B2EC1E4B500DBA78F /* APIConfig.swift in Sources */,
+				08C3855C2EC1E4B500DBA78F /* AppState.swift in Sources */,
+				08C3855D2EC1E4B500DBA78F /* Profile.swift in Sources */,
+				08C3855E2EC1E4B500DBA78F /* PromptSparkError.swift in Sources */,
+				08C3855F2EC1E4B500DBA78F /* ConfigService.swift in Sources */,
+				08C385602EC1E4B500DBA78F /* KeychainService.swift in Sources */,
+				08C385612EC1E4B500DBA78F /* NotificationService.swift in Sources */,
+				08C385622EC1E4B500DBA78F /* PasteboardService.swift in Sources */,
+				08C385632EC1E4B500DBA78F /* String+Extensions.swift in Sources */,
+				08C385642EC1E4B500DBA78F /* UserDefaults+Extensions.swift in Sources */,
+				08C385652EC1E4B500DBA78F /* Constants.swift in Sources */,
+				08C385662EC1E4B500DBA78F /* Logger.swift in Sources */,
+				08C385672EC1E4B500DBA78F /* MenuBarController.swift in Sources */,
+				08C385682EC1E4B500DBA78F /* APISettingsView.swift in Sources */,
+				08C385692EC1E4B500DBA78F /* GeneralSettingsView.swift in Sources */,
+				08C3856A2EC1E4B500DBA78F /* ProfileManagerView.swift in Sources */,
+				08C3856B2EC1E4B500DBA78F /* SettingsView.swift in Sources */,
+				08C3856C2EC1E4B500DBA78F /* ResultWindow.swift in Sources */,
+				08C3856D2EC1E4B500DBA78F /* StatusWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +560,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08C385712EC1E74000DBA78F /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08C385722EC1E74000DBA78F /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08C385712EC1E74000DBA78F /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 08E0F9B52EAB928500073113 /* Project object */;
 }
