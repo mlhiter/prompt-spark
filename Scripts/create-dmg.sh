@@ -3,7 +3,7 @@ set -e
 
 VERSION=${1:-"1.0.0"}
 ARCH=${2:-""}
-APP_NAME="PromptSpark"
+APP_NAME="prompt-spark"
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_ROOT="$PROJECT_DIR/build"
 
@@ -31,7 +31,7 @@ else
 fi
 
 APP_BUNDLE="$BUILD_DIR/$APP_NAME.app"
-DMG_NAME="$APP_NAME-$VERSION-$ARCH.dmg"
+DMG_NAME="PromptSpark-$VERSION-$ARCH.dmg"
 DMG_DIR="$BUILD_DIR/dmg"
 OUTPUT_DMG="$BUILD_DIR/$DMG_NAME"
 
@@ -55,7 +55,7 @@ ln -s /Applications "$DMG_DIR/Applications"
 
 echo "🎨 Creating DMG..."
 rm -f "$OUTPUT_DMG"
-hdiutil create -volname "$APP_NAME" \
+hdiutil create -volname "PromptSpark" \
     -srcfolder "$DMG_DIR" \
     -ov -format UDZO \
     "$OUTPUT_DMG"

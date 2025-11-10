@@ -3,7 +3,7 @@ set -e
 
 VERSION=${1:-"1.0.0"}
 ARCH=${2:-$(uname -m)}
-APP_NAME="PromptSpark"
+APP_NAME="prompt-spark"
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 if [ "$ARCH" = "arm64" ]; then
@@ -31,7 +31,7 @@ mkdir -p "$BUILD_DIR"
 echo "🚀 Building with Xcode..."
 xcodebuild \
     -project "$PROJECT_DIR/prompt-spark.xcodeproj" \
-    -scheme PromptSpark \
+    -scheme prompt-spark \
     -configuration Release \
     -arch "$XCODE_ARCH" \
     CONFIGURATION_BUILD_DIR="$BUILD_DIR" \
